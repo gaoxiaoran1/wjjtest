@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- Sql映射文件: 定义每一条sql语句  -->
+<!--
+	namespace:名称空间.
+			  1.目前可以随便写.
+			  2.如果将来使用的是Mapper接口开发，则namesapce必须写成接口的全类名.
+			         目的:将maapper接口与sql映射文件动态绑定.
+ -->
+<mapper namespace="com.jk.mapper.UserMapper">
+    <select id="findUserPage"  resultType="com.jk.model.User">
+      select * from t_user
+   </select>
+    <!-- 新增 -->
+    <insert id="saveUser">
+	insert into t_user(userName,userpswd,email,loginacct,createtime)
+	values(#{user.userName},#{user.userpswd},#{user.email},#{user.loginacct},#{user.createtime})
+	</insert>
+    <!-- 回显 -->
+    <select id="findUserInfoById" parameterType="int" resultType="com.jk.model.User">
+		select * from t_user where userId = #{value}
+	</select>
+</mapper>
